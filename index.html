@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEKTA Seaven Class</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffeb3b, #ff9800);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header dengan gaya komik */
+        header {
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border-bottom: 8px solid #ffeb3b;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffeb3b,
+                #ffeb3b 10px,
+                #ff9800 10px,
+                #ff9800 20px
+            );
+        }
+        
+        .school-name {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 3px 3px 0 #ff9800, 6px 6px 0 rgba(0,0,0,0.2);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            transform: rotate(-2deg);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: rotate(-2deg) translateY(0); }
+            50% { transform: rotate(-2deg) translateY(-10px); }
+        }
+        
+        .school-address {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        /* Navigation dengan gaya komik */
+        nav {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 6px solid #ffeb3b;
+            position: relative;
+        }
+        
+        nav::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                #fff 10px,
+                #fff 20px
+            );
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 8px;
+            transform: skew(-5deg);
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: block;
+            border: 3px solid #ffeb3b;
+            background: linear-gradient(145deg, #2196f3, #1976d2);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background: linear-gradient(145deg, #ff4081, #e91e63);
+            transform: translateY(-5px) skew(-5deg);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+        }
+        
+        /* Main Content dengan bubble komik */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 35px 0;
+            gap: 25px;
+        }
+        
+        .content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 5px solid #2196f3;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ffeb3b, #ff9800, #ff4081, #2196f3);
+            z-index: -1;
+            border-radius: 30px;
+            opacity: 0.1;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h2 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 4px dashed #ffeb3b;
+            font-size: 28px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            text-align: center;
+            transform: rotate(-1deg);
+        }
+        
+        /* News dengan gaya komik */
+        .news-item {
+            margin-bottom: 40px;
+            padding: 30px;
+            border: 3px solid #2196f3;
+            border-radius: 40px;
+            background: white;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+        
+        .news-item:hover {
+            transform: scale(1.02);
+            box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
+        }
+        
+        .news-item::before {
+            content: "NEW!";
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #ff4081;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            transform: rotate(15deg);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #ffeb3b;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-image:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+        
+        .news-content h3 {
+            color: #2196f3;
+            margin-bottom: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+        }
+        
+        .news-content p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        
+        /* Principal Section dengan gaya komik */
+        .principal {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .principal::before {
+            content: "⭐ Wali Kelas ⭐";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffeb3b;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .principal-avatar {
+            width: 140px;
+            height: 250px;
+            border-radius: 15px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 6px solid #2196f3;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .principal-avatar::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid #ffeb3b;
+            border-radius: 20px;
+        }
+        
+        .principal-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .principal h3 {
+            color: #e91e63;
+            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .principal p {
+            color: #666;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* Absen Table dengan gaya komik */
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
+            border: 5px solid #ffeb3b;
+            background: white;
+        }
+        
+        .attendance-table th {
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            color: white;
+            padding: 15px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .attendance-table td {
+            padding: 14px 18px;
+            border-bottom: 3px solid #f0f0f0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .attendance-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .attendance-table tr:hover {
+            background-color: #e3f2fd;
+            transition: background-color 0.3s ease;
+        }
+        
+        .attendance-table .number {
+            width: 70px;
+            text-align: center;
+            font-weight: 700;
+            color: #2196f3;
+            font-size: 18px;
+        }
+        
+        .attendance-table .age {
+            width: 90px;
+            text-align: center;
+            color: #666;
+            font-weight: 700;
+        }
+        
+        /* Birthday Section dengan gaya komik */
+        .birthday-months {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .birthday-month {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 20px;
+            border: 4px solid #2196f3;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .birthday-month::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff4081, #ff9800, #ffeb3b, #2196f3);
+        }
+        
+        .birthday-month:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
+        }
+        
+        .birthday-month h3 {
+            color: #e91e63;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px dashed #ffeb3b;
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+            transform: rotate(-1deg);
+        }
+        
+        .birthday-list {
+            margin-top: 15px;
+        }
+        
+        .birthday-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 2px dashed #f0f0f0;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+            padding-left: 10px;
+        }
+        
+        .birthday-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .birthday-item:last-child {
+            border-bottom: none;
+        }
+        
+        .birthday-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            margin-right: 15px;
+            overflow: hidden;
+            border: 3px solid #2196f3;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .birthday-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .birthday-info {
+            flex: 1;
+        }
+        
+        .birthday-name {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .birthday-class {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .birthday-date {
+            font-size: 14px;
+            color: #fff;
+            margin-left: 10px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        /* Profile Section */
+        .profile-content {
+            margin-top: 25px;
+        }
+        
+        .profile-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 6px solid #2196f3;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-section:hover {
+            transform: translateX(10px);
+        }
+        
+        .profile-section h3 {
+            color: #e91e63;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed #ffeb3b;
+            font-size: 20px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .profile-section p, .profile-section li {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.7;
+            font-weight: 600;
+        }
+        
+        .profile-section ul {
+            padding-left: 25px;
+        }
+        
+        .profile-section li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .profile-section li::before {
+            content: "🎯";
+            position: absolute;
+            left: -25px;
+        }
+        
+        /* Galeri Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            border: 4px solid #2196f3;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 3px solid #ffeb3b;
+            position: relative;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-title {
+            font-weight: 700;
+            color: #2196f3;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        /* Fullscreen Image Overlay */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 235, 59, 0.5);
+            border: 5px solid #ffeb3b;
+        }
+        
+        /* Footer dengan gaya komik */
+        footer {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+            border-top: 8px solid #ffeb3b;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffeb3b,
+                #ffeb3b 10px,
+                #ff9800 10px,
+                #ff9800 20px
+            );
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 3px dashed #ffeb3b;
+            padding-bottom: 10px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+            transform: rotate(-1deg);
+        }
+        
+        .footer-section p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        
+        .footer-section a {
+            color: #ffeb3b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed rgba(255,255,255,0.3);
+            font-size: 14px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+        
+        /* Bubble Chat untuk efek komik */
+        .bubble {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 3px solid #2196f3;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+        }
+        
+        .bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: white transparent;
+            filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.1));
+        }
+        
+        .bubble::before {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 28px;
+            border-width: 17px 17px 0;
+            border-style: solid;
+            border-color: #2196f3 transparent;
+        }
+        
+        /* Page Content */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .school-name {
+                font-size: 32px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .birthday-months {
+                grid-template-columns: 1fr;
+            }
+            
+            .principal-avatar {
+                width: 120px;
+                height: 214px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="school-name">SPEKTA seaven class</div>
+            <div class="school-address">X-Alpha</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="absen">Absent</a></li>
+                <li><a href="#" class="nav-link" data-page="ulang-tahun">Birthday</a></li>
+                <li><a href="#" class="nav-link" data-page="profile">Profile</a></li>
+                <li><a href="#" class="nav-link" data-page="galeri">Galery</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page-content active">
+            <div class="main-content">
+                <div class="content">
+                    <div class="card">
+                        <h2>📢 BERITA TERKINI</h2>
+                        
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="https://www.dropbox.com/scl/fi/otfff0x1fwkhg7imgmb6b/WhatsApp-Image-2025-11-13-at-15.37.54.png?rlkey=bqyws94jqcljefoh9k4hzk5rd&st=jw7yt5lw&dl=1" alt="upacara Sumpah Pemuda">
+                            </div>
+                            <div class="news-content">
+                                <h3>🎖️ Upacara hari Sumpah Pemuda</h3>
+                                <div class="bubble">
+                                 Murid SPEKTA melakukan upacara hari Sumpah Pemuda.
+                                </div>
+                                <div class="news-meta">
+                                    <span>📅 28 Oktober 2025</span>
+                                    <span>👨‍💼 Oleh: Guru dan Murid SPEKTA</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                             <div class="news-image">
+                                <img src="https://www.dropbox.com/scl/fi/uumz51cq40eltbl81wipt/WhatsApp-Image-2025-11-12-at-20.07.15.png?rlkey=t633x8s1doc4vycs2ebljg3c9&st=4ks84h4n&dl=1" alt="ultah">
+                            </div>
+                            <div class="news-content">
+                                <h3>🎖️ Ulang Tahun Bu Novi</h3>
+                                <div class="bubble">
+                                 Murid kelas 7 merayakan hari ulang tahun gurunya dengan penuh keceriaan dan kebahagiaan.
+                                </div>
+                                <div class="news-meta">
+                                    <span>📅 11 November 2025</span>
+                                    <span>👨‍💼 Oleh: Murid Kelas 7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="card">
+                        <h2>👑 Wali Kelas</h2>
+                        <div class="principal">
+                            <div class="principal-avatar">
+                                <img src="https://www.dropbox.com/scl/fi/24vtgxo6kutvxnel7w910/WhatsApp-Image-2025-11-12-at-20.29.31.png?rlkey=46h1w5fd1am3m7295bwraltp3&st=0yrt0nzk&dl=1" alt="Wali Kelas">
+                            </div>
+                            <h3>Novilia Frisanti Wati Shiba Bhoka s.pd</h3>
+                            <p>Wali kelas 7</p>
+                            <div class="bubble" style="margin-top: 15px;">
+                                "Guru matematika terbaik "
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Absen Page -->
+        <div id="absen" class="page-content">
+            <div class="card">
+                <h2>📋 DAFTAR ABSENSI KELAS 7A</h2>
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th class="number">No</th>
+                            <th>Nama</th>
+                            <th class="age">Umur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                            <td class="number">1</td>
+                            <td>Abir</td>
+                            <td class="age">13</td>
+                        </tr>
+                        <tr>
+                             <td class="number">2</td>
+                             <td>Betrand</td>
+                             <td class="age">13</td>
+                         </tr>
+                         <tr>
+                             <td class="number">3</td>
+                             <td>Christina</td>
+                             <td class="age">14</td>
+                          </tr>
+                          <tr>
+                              <td class="number">4</td>
+                              <td>Eudia</td>
+                              <td class="age">13</td>
+                          </tr>
+                          <tr>
+                              <td class="number">5</td>
+                              <td>Nuel</td>
+                              <td class="age">13</td>
+                           </tr>
+                           <tr>
+                              <td class="number">6</td>
+                              <td>Deon</td>
+                              <td class="age">13</td>
+                           </tr>
+                           <tr>
+                               <td class="number">7</td>
+                               <td>Gracia</td>
+                               <td class="age">12</td>
+                            </tr>
+                            <tr>
+                                <td class="number">8</td>
+                                <td>Prema</td>
+                                <td class="age">13</td>
+                           </tr>
+                           <tr>
+                                <td class="number">9</td>
+                                <td>Satria</td>
+                                <td class="age">13</td>
+                           </tr>
+                           <tr>
+                                <td class="number">10</td>
+                                <td>Hendra</td>
+                                <td class="age">13</td>
+                           </tr>
+                           <tr>
+                                <td class="number">11</td>
+                                <td>Ryu</td>
+                                <td class="age">13</td>
+                            </tr>
+                            <tr>
+                                 <td class="number">12</td>
+                                 <td>David</td>
+                                 <td class="age">13</td>
+                            </tr>
+                            <tr>
+                                  <td class="number">13</td>
+                                  <td>Kalmani</td>
+                                  <td class="age">13</td>
+                            </tr>
+                            <tr>
+                                <td class="number">14</td>
+                                  <td>Alin</td>
+                                  <td class="age">13</td>
+                            </tr>
+                            <tr>
+                                  <td class ="number">15</td>
+                                  <td>Khaila</td>
+                                  <td class="age">13</td>
+                             </tr>
+                             <tr>
+                                   <td class="number">16</td>
+                                   <td>Dama</td>
+                                   <td class="age">13</td>
+                             </tr>
+                             <tr>
+                                    <td class="number">17</td>
+                                    <td>Nendra</td>
+                                    <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                     <td class="number">18</td>
+                                     <td>Qeisan</td>
+                                     <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                     <td class="number">19</td>
+                                     <td>Chandra</td>
+                                     <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                     <td class="number">20</td>
+                                     <td>Sabhrina</td>
+                                     <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                     <td class="number">21</td>
+                                     <td>Nolandri</td>
+                                     <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                     <td class="number">22</td>
+                                     <td>Syakila</td>
+                                     <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                      <td class="number">23</td>
+                                      <td>Jiona</td>
+                                      <td class="age">13</td>
+                              </tr>
+                              <tr>
+                                       <td class="number">24</td>
+                                       <td>Yoel</td>
+                                       <td class="age">13</td>
+                             </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Ulang Tahun Page -->
+        <div id="ulang-tahun" class="page-content">
+            <div class="card">
+                <h2>🎉 ULANG TAHUN GURU & SISWA</h2>
+                <div class="birthday-months">
+                    <!-- Januari -->
+                    <div class="birthday-month">
+                        <h3>Januari</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/w4pqerlis6yp20qk1f6w3/WhatsApp-Image-2025-10-06-at-18.43.13.png?rlkey=l9rm7h5uczrzuwqcqcm0pmgyf&st=iip62a8o&raw=1" alt="Khaila">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Khaila</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">10 Jan</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/vbsw41cms7e70iekrhwm5/WhatsApp-Image-2025-10-06-at-18.01.27.png?rlkey=6c2bjq9g3nbgynvw6pmvc30xu&st=ujdqxbcw&raw=1" alt="Yoel">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Yoel</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">4 Jan</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Februari -->
+                    <div class="birthday-month">
+                        <h3>Februari</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Tidak ada</div>
+                                    <div class="birthday-class">-</div>
+                                </div>
+                                <div class="birthday-date">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Maret -->
+                    <div class="birthday-month">
+                        <h3>Maret</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/pnn1x476f9fc2th1g4ru1/WhatsApp-Image-2025-10-06-at-16.39.49.png?rlkey=gz2x7tu4s012komvwx73f9kyl&st=da2gwtiy&raw=1" alt="Abir">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Abir</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">2 Mar</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/5q2vls6q53n3bb8ix03o3/WhatsApp-Image-2025-10-06-at-16.44.05.png?rlkey=fc122krhcq5kmqz1lv45vkf7z&st=kia285rk&raw=1" alt="Alin">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Alin</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">28 Mar</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- April -->
+                    <div class="birthday-month">
+                        <h3>April</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/jyz2e8y444z7ndwn7x0jz/WhatsApp-Image-2025-10-06-at-17.57.31.png?rlkey=t7pf4p1qlzt9geaek5mlr8uak&st=n6ogd7ss&raw=1" alt="Andri">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Andri</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">1 Apr</div>
+                            </div>
+                             <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/89kjv31ztkeqe3rurynue/WhatsApp-Image-2025-10-06-at-18.12.11.png?rlkey=2ow2opn0kha8wfatig6lz1tq9&st=cawchw12&dl=1" alt="Eudia">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Eudia</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">11 Apr</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mei -->
+                    <div class="birthday-month">
+                        <h3>Mei</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/gywb7322cu40nodijpyc1/WhatsApp-Image-2025-10-06-at-16.53.13.png?rlkey=4mgff5z0d53bi3ie2f33a3coo&st=r9s4ixky&raw=1" alt="Satria">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Satria</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">14 Mei</div>
+                            </div>
+                             <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/fy0okbr4u25ec2orlacsu/Screenshot-2025-10-17-201807.png?rlkey=nbbc6854knp4ynu7w22yun6j7&st=3nd3gdyd&raw=1" alt="Tina">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Tina</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">26 Mei</div>
+                            </div>
+                             <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/j8vllw9n7c2gm3sw7ni0c/WhatsApp-Image-2025-10-06-at-19.08.55.png?rlkey=drc2v3vb14n4hq3nljfm7vzkg&st=6u7lt1t4&raw=1" alt="Candra">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Candra</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">16 Mei</div>
+                            </div>
+                             <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/bc0bhm7kbn1vdf0gmasi0/WhatsApp-Image-2025-10-06-at-16.51.46.png?rlkey=sgo1e0c84qzbxds113d1kcf0s&st=h8sidkh8&raw=1" alt="Syakila">
+                                </div>
+                                 <div class="birthday-info">
+                                    <div class="birthday-name">Syakila</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">22 Mei</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Juni -->
+                    <div class="birthday-month">
+                        <h3>Juni</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/zc19rzww9r5frg0vadfzz/WhatsApp-Image-2025-10-06-at-18.11.22.png?rlkey=otb6m0d0syslgb2d7e18d275z&st=ykyg5fbp&raw=1" alt="Betrand">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Betrand</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">3 Juni</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/ux73rdmu93ii1f9izdy74/WhatsApp-Image-2025-10-06-at-16.40.54.jpeg?rlkey=jsly5y05of08ck8d4lviflpmi&st=1efiagss&raw=1" alt="Deon">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Deon</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">4 Juni</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Juli -->
+                    <div class="birthday-month">
+                        <h3>Juli</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/n890m1hjy68ehrdtvwuzs/WhatsApp-Image-2025-10-07-at-20.41.42.png?rlkey=l88kg71aeosxz5h87qriuwxre&st=lxyelc6r&raw=1" alt="Dama">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Dama</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">3 Juli</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://dl.dropboxusercontent.com/scl/fi/hha6w84d944nc92cbtv3p/WhatsApp-Image-2025-10-06-at-18.47.53.png?rlkey=mam34ivkxb7q84zpc6m1l1cch&st=hmp15tg3" alt="David">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">David</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">1 Juli</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/4qpm26i9l9ak1cyco6xfr/WhatsApp-Image-2025-09-24-at-16.31.00-1.png?rlkey=1pxczjbvhc2bjs5h98rf2nzfz&st=cvajn9oz&raw=1" alt="Sabrina">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Sabrina</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">7 Juli</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/61suuvpn72s7srzkdnvzx/WhatsApp-Image-2025-10-06-at-16.58.13.jpeg?rlkey=64sw3zx7fj0lyf139gb9adenp&st=egkpq6vn&raw=1" alt="Hendra">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Hendra</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">18 Juli</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/tmrk3hcy00o9804mynnbk/WhatsApp-Image-2025-10-06-at-18.19.09.png?rlkey=t91emtvl3fj43uu5jxruaod8o&st=ldm3exyx&raw=1" alt="Jiona">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Jiona</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">21 Juli</div>
+                            </div>
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/6zexrfvrpzmktxw0ry5ic/WhatsApp-Image-2025-10-06-at-18.38.12.jpeg?rlkey=eopftxbl6ewmzeednm60ejffv&st=rfm68edd&raw=1" alt="Nuel">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Nuel</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">14 Juli</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agustus -->
+                    <div class="birthday-month">
+                        <h3>Agustus</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://dl.dropbox.com/scl/fi/wnuyb3d84uzxchyb72yue/WhatsApp-Image-2025-10-06-at-18.44.36.png?rlkey=vbk2nb1qa15jg40soxmjv75ro&st=f3h9x7qp&raw=1" alt="Qeisan">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Qeisan</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">2 Agu</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- September -->
+                    <div class="birthday-month">
+                        <h3>September</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/dwn0uzehnid38wwsg9rzl/WhatsApp-Image-2025-10-06-at-16.54.24.png?rlkey=y9kl08javqeq5n36fnl6cixyu&st=ue6z2j5d&raw=1" alt="Nendra">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Nendra</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">9 Sep</div>
+                            </div>
+                              <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/t10mkybq99e18ngs9sd9z/WhatsApp-Image-2025-10-07-at-06.08.50.png?rlkey=4jt5b0afpven09qs7upsr9if3&st=6ctc1qbj&raw=1" alt="Prema">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Prema</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">12 Sep</div>
+                            </div>
+                              <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/8305pvu0ukonh1fwwb1kr/WhatsApp-Image-2025-10-06-at-16.45.21.png?rlkey=mompvbge9l6t4lc1581byahnm&st=bft86jnc&raw=1" alt="Ryu">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Ryu</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">15 Sep</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Oktober -->
+                    <div class="birthday-month">
+                        <h3>Oktober</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/qq7qkhvfjl7n36x66xle5/WhatsApp-Image-2025-10-06-at-16.53.02.png?rlkey=fq57j7pqvz2uitdyut4fzwy23&st=st3fm88q&dl=1" alt="Kalmani">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Kalmani</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">12 Okt</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- November -->
+                    <div class="birthday-month">
+                        <h3>November</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/24vtgxo6kutvxnel7w910/WhatsApp-Image-2025-11-12-at-20.29.31.png?rlkey=46h1w5fd1am3m7295bwraltp3&st=0yrt0nzk&dl=1" alt="Bu Novi">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Bu Novilia</div>
+                                    <div class="birthday-class">Wali Kelas</div>
+                                </div>
+                                <div class="birthday-date">11 Nov</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desember -->
+                    <div class="birthday-month">
+                        <h3>Desember</h3>
+                        <div class="birthday-list">
+                            <div class="birthday-item">
+                                <div class="birthday-avatar">
+                                    <img src="https://www.dropbox.com/scl/fi/sxv3y8xxsjao674dvcnwl/WhatsApp-Image-2025-10-06-at-21.53.37.png?rlkey=dh8qdjv7pxillotagtwo9i3uy&st=13qwx6qv&raw=1" alt="Gracia">
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Gracia</div>
+                                    <div class="birthday-class">Kelas 7</div>
+                                </div>
+                                <div class="birthday-date">10 Des</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Page -->
+        <div id="profile" class="page-content">
+            <div class="card">
+                <h2>🏫 PROFIL KELAS</h2>
+                <div class="profile-content">
+                    <div class="profile-section">
+                        <h3>🎯 Visi</h3>
+                        <p>Menjadi Murid yang terbaik.</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>🚀 Misi</h3>
+                        <ul>
+                            <li>Menjaga kebersihan kelas</li>
+                            <li>Menjadi murid berprestasi</li>
+                            <li>Menjadi murid yang terampil</li>
+                            <li>menjadi murid yang jujur</li>
+                            <li>menjadi murid yang bertanggung jawab</li>
+                            <li>menjadi murid yang ramah</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>📜 Sejarah Singkat</h3>
+                        <p>Kelas ini dimulai dari pra-MPLS (18 juli 2025).</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>🏗️ Fasilitas kelas</h3>
+                        <ul>
+                            <li>Ruang kelas yang nyaman dan ber-AC</li>
+                            <li>banyak hiasan</li>
+                            <li>smart TV</li>
+                            <li>Dan masih banyak lagi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Galeri Page tanpa Video YouTube -->
+        <div id="galeri" class="page-content">
+            <div class="card">
+                <h2>📸 GALERY moment</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openFullscreen('https://www.dropbox.com/scl/fi/otfff0x1fwkhg7imgmb6b/WhatsApp-Image-2025-11-13-at-15.37.54.png?rlkey=bqyws94jqcljefoh9k4hzk5rd&st=jw7yt5lw&dl=1')">
+                        <div class="gallery-image">
+                            <img src="https://www.dropbox.com/scl/fi/otfff0x1fwkhg7imgmb6b/WhatsApp-Image-2025-11-13-at-15.37.54.png?rlkey=bqyws94jqcljefoh9k4hzk5rd&st=jw7yt5lw&dl=1" alt="Upacara Bendera">
+                        </div>
+                        <div class="gallery-title">Upacara Sumpah Pemuda</div>
+                    </div>
+                    <div class="gallery-item" onclick="openFullscreen('https://www.dropbox.com/scl/fi/uumz51cq40eltbl81wipt/WhatsApp-Image-2025-11-12-at-20.07.15.png?rlkey=t633x8s1doc4vycs2ebljg3c9&st=4ks84h4n&dl=1')">
+                        <div class="gallery-image">
+                            <img src="https://www.dropbox.com/scl/fi/uumz51cq40eltbl81wipt/WhatsApp-Image-2025-11-12-at-20.07.15.png?rlkey=t633x8s1doc4vycs2ebljg3c9&st=4ks84h4n&dl=1" alt="Kegiatan Pramuka">
+                        </div>
+                        <div class="gallery-title">Ultah Bu Guru</div>
+                    </div>
+                    <div class="gallery-item" onclick="openFullscreen('https://www.dropbox.com/scl/fi/qp1opigwcc2k6v18p0iag/mpls.png?rlkey=jdjbztqsr3zhrnquw01cx52jp&st=uz46yec9&dl=1')">
+                        <div class="gallery-image">
+                            <img src="https://www.dropbox.com/scl/fi/qp1opigwcc2k6v18p0iag/mpls.png?rlkey=jdjbztqsr3zhrnquw01cx52jp&st=uz46yec9&dl=1" alt="Lomba 17 Agustus">
+                        </div>
+                        <div class="gallery-title">MPLS</div>
+                    </div>
+                    <div class="gallery-item" onclick="openFullscreen('-')">
+                        <div class="gallery-image">
+                            <img src="-" alt="Coming soon">
+                        </div>
+                         <div class="gallery-title">Coming soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fullscreen Image Overlay -->
+    <div class="fullscreen-overlay" onclick="closeFullscreen()">
+        <img class="fullscreen-image" src="" alt="Fullscreen Image">
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>📞 KONTAK KAMI</h3>
+                    <p><strong>🏫 SPEKTA Seaven</strong></p>
+                    <p>📍 JL Majapahit No.9 Ampenan</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>🔗 TAUTAN CEPAT</h3>
+                    <p><a href="#" class="nav-link" data-page="profile">📋 Profil Kelas</a></p>
+                    <p><a href="#" class="nav-link" data-page="galeri">🎬 Galeri</a></p>
+                    <p><a href="#" class="nav-link" data-page="home">📰 Berita Terbaru</a></p>
+                    <p><a href="#">🎓 Info</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>🌐 WEBSITE RESMI</h3>
+                    <p><a href="https://seavencls.github.io/ourseaven/">https://seavencls.github.io/ourseaven/</a></p>
+                    <div class="bubble" style="background: rgba(255,255,255,0.2); border-color: #ffeb3b; margin-top: 15px;">
+                        Kunjungi website kami untuk informasi lebih lengkap! 🚀
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 SPEKTA Seaven. Terima Kasih Atas Kunjungannya! ✨
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+            
+            // Function to switch pages
+            function switchPage(pageId) {
+                // Remove active class from all links and pages
+                navLinks.forEach(l => l.classList.remove('active'));
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Add active class to clicked link
+                document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+                
+                // Show the corresponding page
+                document.getElementById(pageId).classList.add('active');
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+            
+            // Also make footer links work
+            const footerLinks = document.querySelectorAll('.footer-section .nav-link');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+        });
+
+        // Fullscreen image functionality
+        function openFullscreen(imageSrc) {
+            const overlay = document.querySelector('.fullscreen-overlay');
+            const fullscreenImage = document.querySelector('.fullscreen-image');
+            
+            fullscreenImage.src = imageSrc;
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeFullscreen() {
+            const overlay = document.querySelector('.fullscreen-overlay');
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close fullscreen with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+        });
+
+        // Add some comic-style animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating animation to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
